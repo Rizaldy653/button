@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Launching WBS DIY</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-image: url("3853752_81310.jpg");
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        position: relative;
+      }
+
+      h1 {
+        color: #333;
+        font-size: 3rem;
+        transition: opacity 0.5s ease;
+      }
+
+      .launch-button {
+        background: url("51hQCCAyp1L-removebg-preview.png") no-repeat center
+          center;
+        background-size: contain;
+        width: 500px;
+        height: 500px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        transition: transform 0.1s ease, opacity 0.5s ease;
+      }
+
+      .launch-button:active {
+        transform: scale(0.95);
+      }
+
+      #countdown {
+        font-size: 2rem;
+        color: #555;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        transition: font-size 0.5s ease;
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .launch-button {
+          width: 150px;
+          height: 150px;
+        }
+
+        #countdown {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="title">Launching WBS DIY</h1>
+    <button
+      class="launch-button"
+      id="launchButton"
+      onclick="startCountdown()"
+      ontouchstart="this.style.transform='scale(0.95)'"
+      ontouchend="this.style.transform='scale(1)'"
+    ></button>
+    <div id="countdown"></div>
+
+    <script>
+      function startCountdown() {
+        let countdownElement = document.getElementById("countdown");
+        let titleElement = document.getElementById("title");
+        let buttonElement = document.getElementById("launchButton");
+        let countdown = 3;
+
+        // Hide title and button
+        titleElement.classList.add("hidden");
+        buttonElement.classList.add("hidden");
+
+        // Show countdown
+        countdownElement.style.display = "block";
+        countdownElement.style.fontSize = "3rem";
+        countdownElement.textContent = countdown;
+
+        let interval = setInterval(() => {
+          countdown--;
+          if (countdown <= 0) {
+            clearInterval(interval);
+            countdownElement.textContent = "WBS DIY Launched!";
+          } else {
+            countdownElement.textContent = countdown;
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
